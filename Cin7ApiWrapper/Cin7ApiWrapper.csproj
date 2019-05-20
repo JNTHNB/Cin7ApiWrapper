@@ -113,9 +113,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="LICENSE" />
     <None Include="packages.config" />
-    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
