@@ -27,7 +27,7 @@ The following endpoints are supported.
 ## Examples
 ### Find a Sales Order
 ```csharp
-var api = new Cin7Api(new ApiUser("{API_USERNAME}", "{API_API_KEY}"));
+var api = new Cin7Api(new ApiUser("{API_USERNAME}", "{API_KEY}"));
 
 SalesOrder sale = api.SalesOrders.Find(78);
 ```
@@ -77,7 +77,7 @@ public class SalesOrderLineDTO
 
 ### Create a Sales Order
 ```csharp
-var api = new Cin7Api(new ApiUser("{API_USERNAME}", "{API_API_KEY}"));
+var api = new Cin7Api(new ApiUser("{API_USERNAME}", "{API_KEY}"));
 
 var sale = new SalesOrder()
 {
@@ -123,7 +123,7 @@ CreateBatchResult result = api.SalesOrders.Create(batch);
 
 ### Update a Sales Order
 ```csharp
-var api = new Cin7Api(new ApiUser("{API_USERNAME}", "{API_API_KEY}"));
+var api = new Cin7Api(new ApiUser("{API_USERNAME}", "{API_KEY}"));
 
 var sale = new SalesOrder()
 {
@@ -136,7 +136,7 @@ UpdateResult result = api.SalesOrders.Update(sale);
 
 ### Update a List of Sales Orders
 ```csharp
-var api = new Cin7Api(new ApiUser("{API_USERNAME}", "{API_API_KEY}"));
+var api = new Cin7Api(new ApiUser("{API_USERNAME}", "{API_KEY}"));
 
 IEnumerable<SalesOrder> list = api.SalesOrders.Find(where: "InternalComments <> 'Test'");
 
