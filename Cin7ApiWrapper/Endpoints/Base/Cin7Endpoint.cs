@@ -30,12 +30,12 @@ namespace Cin7ApiWrapper.Endpoints.Base
         {
             if (item == null)
             {
-                throw new ArgumentNullException($"Unable to perform create because the item is null.", nameof(item));
+                throw new ArgumentException("Unable to perform create because the item is null.");
             }
 
             try
             {
-                return new CreateResult(Create(new[] { item }).Results.First());
+                return new CreateResult(Create(new[] { item }).Results.Single());
             }
             finally
             {
@@ -47,7 +47,7 @@ namespace Cin7ApiWrapper.Endpoints.Base
         {
             if (items == null || items.Count() == 0)
             {
-                throw new ArgumentException("Unable to perform create because the batch is empty or null.", nameof(items));
+                throw new ArgumentException("Unable to perform create because the batch is empty or null.");
             }
 
             try
@@ -64,12 +64,12 @@ namespace Cin7ApiWrapper.Endpoints.Base
         {
             if (item == null)
             {
-                throw new ArgumentNullException("Unable to perform update because the item is null.", nameof(item));
+                throw new ArgumentException("Unable to perform update because the item is null.");
             }
 
             try
             {
-                return new UpdateResult(Update(new[] { item }).Results.First());
+                return new UpdateResult(Update(new[] { item }).Results.Single());
             }
             finally
             {
@@ -81,7 +81,7 @@ namespace Cin7ApiWrapper.Endpoints.Base
         {
             if (items == null || items.Count() == 0)
             {
-                throw new ArgumentException("Unable to perform update because the batch is empty or null.", nameof(items));
+                throw new ArgumentException("Unable to perform update because the batch is empty or null.");
             }
 
             try
