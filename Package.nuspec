@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Cin7ApiWrapper</id>
+    <version>1.0.0</version>
+    <authors>JNTHND</authors>
+    <owners>JNTHND</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/JNTHND/Cin7ApiWrapper</projectUrl>
+    <title>Cin7 Api Wrapper</title>
+    <description>A .NET Wrapper for the Cin7 API. See https://api.cin7.com/api</description>
+    <copyright>Copyright (c) 2019 JNTHND</copyright>
+    <tags>Cin7 API</tags>
+    <dependencies>
+      <group>
+        <dependency id="Newtonsoft.Json" version="11.0.2"/>
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Cin7ApiWrapper\bin\Release\Cin7ApiWrapper.dll" target="lib\net40" />
+  </files>
+</package>

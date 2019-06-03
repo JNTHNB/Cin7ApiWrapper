@@ -24,6 +24,9 @@ The following endpoints are supported.
 * Users - Find
 * Vouchers - Find 
 
+## Installation
+Download directly into Visual Studio using the NuGet command **PM&gt; Install-Package Cin7ApiWrapper** 
+
 ## Examples
 ### Find a Sales Order
 ```csharp
