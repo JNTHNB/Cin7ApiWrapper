@@ -138,8 +138,11 @@ if (line != null)
 	line.UnitPrice = 99.95m;
 }
 
-sale.LineItems.Add(new SalesOrderLineitem { Code = "productB", Quantity = 1 }); // Add "productB" with default product attributes and member price.
-sale.DispatchedDate = DateTime.UtcNow; // Set the dispatch date to update the shipped quantities in the line items.
+// Add "productB" with default product attributes and member price.
+sale.LineItems.Add(new SalesOrderLineitem { Code = "productB", Quantity = 1 }); 
+
+// Set the dispatch date to update the shipped quantities in the line items.
+sale.DispatchedDate = DateTime.UtcNow; 
 
 // Update the order.
 UpdateResult result = api.SalesOrders.Update(sale);
