@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace Cin7ApiWrapper.Models
@@ -30,7 +31,8 @@ namespace Cin7ApiWrapper.Models
         public string CostCenter { get; set; }
         public string PriceColumn { get; set; }
         public string PaymentTerms { get; set; }
-        public TaxStatus TaxStatus { get; set; }
+        [JsonProperty(PropertyName = "TaxStatus")]
+        public string TaxType { get; set; }
         public string TaxNumber { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
@@ -47,10 +49,11 @@ namespace Cin7ApiWrapper.Models
         public string Notes { get; set; }
         public string Group { get; set; }
         public string SubGroup { get; set; }
-        public IEnumerable<Secondarycontact> SecondaryContacts { get; set; }
+        public Dictionary<string, object> CustomFields { get; set; }
+        public List<SecondaryContact> SecondaryContacts { get; set; }
     }
 
-    public class Secondarycontact
+    public class SecondaryContact
     {
         public int Id { get; set; }
         public string Company { get; set; }

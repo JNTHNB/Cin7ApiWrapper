@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace Cin7ApiWrapper.Models
@@ -17,16 +18,17 @@ namespace Cin7ApiWrapper.Models
         public string AdjustInAccountingSystem { get; set; }
         public string AdjustmentReason { get; set; }
         public string AlternativeAccountCode { get; set; }
-        public decimal ProductTotal { get; set; }
+        [JsonProperty]
+        public decimal ProductTotal { get; private set; }
         public string Source { get; set; }
-        public IEnumerable<AdjustmentLineitem> LineItems { get; set; }
+        public List<AdjustmentLineitem> LineItems { get; set; }
     }
 
     public class AdjustmentLineitem
     {
         public int Id { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public int ProductId { get; set; }
+        [JsonProperty]
+        public int ProductId { get; private set; }
         public int ProductOptionId { get; set; }
         public string IntegrationRef { get; set; }
         public int Sort { get; set; }
@@ -35,11 +37,13 @@ namespace Cin7ApiWrapper.Models
         public string Option1 { get; set; }
         public string Option2 { get; set; }
         public string Option3 { get; set; }
-        public decimal Qty { get; set; }
-        public decimal QtyAdjusted { get; set; }
-        public decimal HoldingQty { get; set; }
+        [JsonProperty(PropertyName = "Qty")]
+        public decimal Quantity { get; set; }
+        [JsonProperty(PropertyName = "QtyAdjusted")]
+        public decimal? QuantityAdjusted { get; set; }
+        [JsonProperty(PropertyName = "HoldingQty")]
+        public decimal? HoldingQuantity { get; set; }
         public string Account { get; set; }
-        public decimal UnitCost { get; set; }
+        public decimal? UnitCost { get; set; }
     }
-
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace Cin7ApiWrapper.Models
@@ -18,7 +19,8 @@ namespace Cin7ApiWrapper.Models
     public class BomMaterProduct
     {
         public int Id { get; set; }
-        public int ProductId { get; set; }
+        [JsonProperty]
+        public int ProductId { get; private set; }
         public int ProductOptionId { get; set; }
         public string Type { get; set; }
         public int Sort { get; set; }
@@ -28,15 +30,17 @@ namespace Cin7ApiWrapper.Models
         public string Option2 { get; set; }
         public string Option3 { get; set; }
         public string Notes { get; set; }
-        public decimal Qty { get; set; }
+        [JsonProperty(PropertyName = "Qty")]
+        public decimal Quantity { get; set; }
         public decimal UnitCost { get; set; }
-        public IEnumerable<BomMaterProductComponent> Components { get; set; }
+        public List<BomMaterProductComponent> Components { get; set; }
     }
 
     public class BomMaterProductComponent
     {
         public int Id { get; set; }
-        public int ProductId { get; set; }
+        [JsonProperty]
+        public int ProductId { get; private set; }
         public int ProductOptionId { get; set; }
         public string Type { get; set; }
         public int Sort { get; set; }
@@ -46,7 +50,8 @@ namespace Cin7ApiWrapper.Models
         public string Option2 { get; set; }
         public string Option3 { get; set; }
         public string Notes { get; set; }
-        public decimal Qty { get; set; }
-        public decimal UnitCost { get; set; }
+        [JsonProperty(PropertyName = "Qty")]
+        public decimal Quantity { get; set; }
+        public decimal? UnitCost { get; set; }
     }
 }

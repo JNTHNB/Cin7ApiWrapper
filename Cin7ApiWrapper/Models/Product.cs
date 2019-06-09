@@ -32,8 +32,7 @@ namespace Cin7ApiWrapper.Models
         public string OptionLabel1 { get; set; }
         public string OptionLabel2 { get; set; }
         public string OptionLabel3 { get; set; }
-
         public Dictionary<string, object> CustomFields { get; set; }
-        public IEnumerable<ProductOption> ProductOptions { get; set; }
+        public List<ProductOption> ProductOptions { get; set; }
     }
 }

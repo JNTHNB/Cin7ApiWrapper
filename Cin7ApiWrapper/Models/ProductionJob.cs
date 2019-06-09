@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace Cin7ApiWrapper.Models
@@ -33,8 +34,10 @@ namespace Cin7ApiWrapper.Models
         {
             Components = new List<ProductionJobComponent>();
         }
+
         public int Id { get; set; }
-        public int ProductId { get; set; }
+        [JsonProperty]
+        public int ProductId { get; private set; }
         public int ProductOptionId { get; set; }
         public string Type { get; set; }
         public int Sort { get; set; }
@@ -45,8 +48,10 @@ namespace Cin7ApiWrapper.Models
         public string Option3 { get; set; }
         public string Notes { get; set; }
         public DateTime? DueDate { get; set; }
-        public decimal StandardQty { get; set; }
-        public decimal ActualQty { get; set; }
+        [JsonProperty(PropertyName = "StandardQty")]
+        public decimal StandardQuantity { get; set; }
+        [JsonProperty(PropertyName = "ActualQty")]
+        public decimal ActualQuantity { get; set; }
         public decimal UnitCost { get; set; }
         public List<ProductionJobComponent> Components { get; set; }
     }
@@ -54,7 +59,8 @@ namespace Cin7ApiWrapper.Models
     public class ProductionJobComponent
     {
         public int Id { get; set; }
-        public int ProductId { get; set; }
+        [JsonProperty]
+        public int ProductId { get; private set; }
         public int ProductOptionId { get; set; }
         public string Type { get; set; }
         public int Sort { get; set; }
@@ -65,8 +71,10 @@ namespace Cin7ApiWrapper.Models
         public string Option3 { get; set; }
         public string Notes { get; set; }
         public DateTime? DueDate { get; set; }
-        public decimal StandardQty { get; set; }
-        public decimal ActualQty { get; set; }
-        public decimal UnitCost { get; set; }
+        [JsonProperty(PropertyName = "StandardQty")]
+        public decimal StandardQuantity { get; set; }
+        [JsonProperty(PropertyName = "ActualQty")]
+        public decimal ActualQuantity { get; set; }
+        public decimal? UnitCost { get; set; }
     }
 }

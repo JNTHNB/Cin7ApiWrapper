@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace Cin7ApiWrapper.Models
@@ -43,26 +44,28 @@ namespace Cin7ApiWrapper.Models
         public string ProjectName { get; set; }
         public string TrackingCode { get; set; }
         public string InternalComments { get; set; }
-        public decimal ProductTotal { get; set; }
+        [JsonProperty]
+        public decimal ProductTotal { get; private set; }
         public decimal FreightTotal { get; set; }
         public string FreightDescription { get; set; }
         public decimal Surcharge { get; set; }
         public string SurchargeDescription { get; set; }
         public decimal DiscountTotal { get; set; }
         public string DiscountDescription { get; set; }
-        public decimal Total { get; set; }
+        [JsonProperty]
+        public decimal Total { get; private set; }
         public string CurrencyCode { get; set; }
         public decimal CurrencyRate { get; set; }
         public string CurrencySymbol { get; set; }
-        public TaxStatus TaxStatus { get; set; }
-        public decimal TaxRate { get; set; }
+        public TaxStatus? TaxStatus { get; set; }
+        public decimal? TaxRate { get; set; }
         public string Source { get; set; }
         public Dictionary<string, object> CustomFields { get; set; }
         public string MemberEmail { get; set; }
         public string MemberCostCenter { get; set; }
-        public decimal MemberAlternativeTaxRate { get; set; }
+        public decimal? MemberAlternativeTaxRate { get; set; }
         public string CostCenter { get; set; }
-        public string AlternativeTaxRate { get; set; }
+        public decimal? AlternativeTaxRate { get; set; }
         public DateTime? EstimatedDeliveryDate { get; set; }
         public int SalesPersonId { get; set; }
         public string SalesPersonEmail { get; set; }
@@ -70,23 +73,23 @@ namespace Cin7ApiWrapper.Models
         public string CustomerOrderNo { get; set; }
         public string VoucherCode { get; set; }
         public string DeliveryInstructions { get; set; }
-        public string Status { get; set; }
+        [JsonProperty]
+        public string Status { get; private set; }
         public string Stage { get; set; }
         public string SupplierInvoiceReference { get; set; }
         public DateTime? SupplierAcceptanceDate { get; set; }
         public string Port { get; set; }
-        public string EstimatedArrivalDate { get; set; }
+        public DateTime? EstimatedArrivalDate { get; set; }
         public DateTime? FullyReceivedDate { get; set; }
         public DateTime? InvoiceDate { get; set; }
-        public IEnumerable<PurchaseOrderLineitem> LineItems { get; set; }
+        public List<PurchaseOrderLineitem> LineItems { get; set; }
     }
 
     public class PurchaseOrderLineitem
     {
         public int Id { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public int TransactionId { get; set; }
-        public int ProductId { get; set; }
+        [JsonProperty]
+        public int ProductId { get; private set; }
         public int ProductOptionId { get; set; }
         public string IntegrationRef { get; set; }
         public int Sort { get; set; }
@@ -95,15 +98,18 @@ namespace Cin7ApiWrapper.Models
         public string Option1 { get; set; }
         public string Option2 { get; set; }
         public string Option3 { get; set; }
-        public decimal Qty { get; set; }
+        [JsonProperty(PropertyName = "Qty")]
+        public decimal Quantity { get; set; }
         public string StyleCode { get; set; }
         public string Barcode { get; set; }
         public string SizeCodes { get; set; }
         public string LineComments { get; set; }
-        public decimal UnitPrice { get; set; }
-        public decimal Discount { get; set; }
-        public decimal QtyShipped { get; set; }
-        public decimal HoldingQty { get; set; }
+        public decimal? UnitPrice { get; set; }
+        public decimal? Discount { get; set; }
+        [JsonProperty(PropertyName = "QtyShipped")]
+        public decimal? QuantityShipped { get; private set; }
+        [JsonProperty(PropertyName = "HoldingQty")]
+        public decimal? HoldingQuantity { get; set; }
         public string AccountCode { get; set; }
     }
 

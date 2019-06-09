@@ -85,10 +85,10 @@ var api = new Cin7Api(new ApiUser("{API_USERNAME}", "{API_KEY}"));
 var sale = new SalesOrder()
 {
 	MemberId = 77,
-	TaxStatus = TaxStatus.Incl,
+	TaxStatus = TaxStatus.Including,
 	TaxRate = 15,
 	LineItems = new List<SalesOrderLineitem>() {
-			new SalesOrderLineitem(){ Code = " 123", Qty = 1, UnitPrice = 10.5m }
+			new SalesOrderLineitem(){ Code = " 123", Quantity = 1, UnitPrice = 10.5m }
 		}
 };
 
@@ -104,19 +104,19 @@ var batch = new List<SalesOrder>()
 	new SalesOrder()
 	{
 		MemberId = 1,
-		TaxStatus = TaxStatus.Incl,
+		TaxStatus = TaxStatus.Including,
 		TaxRate = 15,
 		LineItems = new List<SalesOrderLineitem>() {
-			new SalesOrderLineitem(){ Code = " 123", Qty = 1, UnitPrice = 10.5m }
+			new SalesOrderLineitem(){ Code = " 123", Quantity = 1, UnitPrice = 10.5m }
 		}
 	},
 	new SalesOrder()
 	{
 		MemberId = 1,
-		TaxStatus = TaxStatus.Incl,
+		TaxStatus = TaxStatus.Including,
 		TaxRate = 15,
 		LineItems = new List<SalesOrderLineitem>() {
-			new SalesOrderLineitem(){ Code = " abc", Qty = 2, UnitPrice = 1.5m }
+			new SalesOrderLineitem(){ Code = " abc", Quantity = 2, UnitPrice = 1.5m }
 		}
 	}
 };
@@ -128,12 +128,20 @@ CreateBatchResult result = api.SalesOrders.Create(batch);
 ```csharp
 var api = new Cin7Api(new ApiUser("{API_USERNAME}", "{API_KEY}"));
 
-var sale = new SalesOrder()
-{
-	Id = 100,
-	DispatchedDate = DateTime.UtcNow
-};
+var sale = api.SalesOrders.Find(100); // Find order Id 100.
 
+var line = sale.LineItems.Find(x => x.Code == "productA"); // Find an existing line.
+if (line != null)
+{
+	// Change the quantity and price for "productA"
+	line.Quantity = 3;
+	line.UnitPrice = 99.95m;
+}
+
+sale.LineItems.Add(new SalesOrderLineitem { Code = "productB", Quantity = 1 }); // Add "productB" with default product attributes and member price.
+sale.DispatchedDate = DateTime.UtcNow; // Set the dispatch date to update the shipped quantities in the line items.
+
+// Update the order.
 UpdateResult result = api.SalesOrders.Update(sale);
 ```
 

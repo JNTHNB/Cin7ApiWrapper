@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace Cin7ApiWrapper.Models
@@ -6,31 +7,39 @@ namespace Cin7ApiWrapper.Models
     public class SalesOrder
     {
         public int Id { get; set; }
-        public DateTime? InvoiceDate { get; set; }
-        public int InvoiceNumber { get; set; }
-        public DateTime? DispatchedDate { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
+        public DateTime? DispatchedDate { get; set; }
+        public string LogisticsCarrier { get; set; }
+        public int LogisticsStatus { get; set; }
+        public string TrackingCode { get; set; }
         public bool IsApproved { get; set; }
+        [JsonProperty]
+        public string Status { get; private set; }
         public string Stage { get; set; }
         public string Reference { get; set; }
+        [JsonProperty]
+        public int InvoiceNumber { get; private set; }
+        public DateTime? InvoiceDate { get; set; }
         public int MemberId { get; set; }
         public string MemberEmail { get; set; }
         public string MemberCostCenter { get; set; }
         public string InternalComments { get; set; }
         public int SalesPersonId { get; set; }
         public string SalesPersonEmail { get; set; }
-        public decimal ProductTotal { get; set; }
+        [JsonProperty]
+        public decimal ProductTotal { get; private set; }
         public decimal FreightTotal { get; set; }
         public string FreightDescription { get; set; }
         public decimal DiscountTotal { get; set; }
         public string DiscountDescription { get; set; }
-        public decimal Total { get; set; }
+        [JsonProperty]
+        public decimal Total { get; private set; }
         public string CurrencyCode { get; set; }
         public decimal CurrencyRate { get; set; }
         public string CurrencySymbol { get; set; }
-        public TaxStatus TaxStatus { get; set; }
-        public decimal TaxRate { get; set; }
+        public TaxStatus? TaxStatus { get; set; }
+        public decimal? TaxRate { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Company { get; set; }
@@ -61,20 +70,18 @@ namespace Cin7ApiWrapper.Models
         public int BranchId { get; set; }
         public string BranchEmail { get; set; }
         public string CostCenter { get; set; }
-        public string TrackingCode { get; set; }
         public string PaymentTerms { get; set; }
         public string CustomerOrderNo { get; set; }
         public decimal Surcharge { get; set; }
         public string SurchargeDescription { get; set; }
-        public IEnumerable<SalesOrderLineitem> LineItems { get; set; }
+        public List<SalesOrderLineitem> LineItems { get; set; }
     }
 
     public class SalesOrderLineitem
     {
         public int Id { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public int TransactionId { get; set; }
-        public int ProductId { get; set; }
+        [JsonProperty]
+        public int ProductId { get; private set; }
         public int ProductOptionId { get; set; }
         public string StyleCode { get; set; }
         public string Code { get; set; }
@@ -87,9 +94,11 @@ namespace Cin7ApiWrapper.Models
         public string SizeCodes { get; set; }
         public string LineComments { get; set; }
         public string IntegrationRef { get; set; }
-        public decimal Qty { get; set; }
-        public decimal UnitPrice { get; set; }
-        public decimal Discount { get; set; }
-        public decimal QtyShipped { get; set; }
+        [JsonProperty(PropertyName = "Qty")]
+        public decimal Quantity { get; set; }
+        public decimal? UnitPrice { get; set; }
+        public decimal? Discount { get; set; }
+        [JsonProperty(PropertyName = "QtyShipped")]
+        public decimal? QuantityShipped { get; private set; }
     }
 }

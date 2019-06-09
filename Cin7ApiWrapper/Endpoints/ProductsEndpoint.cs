@@ -28,6 +28,7 @@ namespace Cin7ApiWrapper.Endpoints
                     yield return new ProductVariation()
                     {
                         ProductId = product.Id,
+                        ProductOptionId = option.Id,
                         Name = product.Name,
                         StyleCode = product.StyleCode,
                         OptionLabel1 = product.OptionLabel1,

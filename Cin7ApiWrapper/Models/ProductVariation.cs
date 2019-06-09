@@ -6,7 +6,7 @@ namespace Cin7ApiWrapper.Models
     public class ProductVariation
     {
         public int ProductId { get; set; }
-
+        public int ProductOptionId { get; set; }
 
         public bool IsActive { get; set; }
 
@@ -102,7 +102,7 @@ namespace Cin7ApiWrapper.Models
         /// The full image URL on the Cin7 Server. 
         /// </summary>
         public Image Image { get; set; }
-        public TaxStatus TaxStatus { get; set; }
+        public TaxStatus? TaxStatus { get; set; }
         public string XeroIncomeCode { get; set; }
 
         public Dictionary<string, decimal?> PriceColumns { get; set; }
