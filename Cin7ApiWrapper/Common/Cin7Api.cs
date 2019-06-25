@@ -7,9 +7,9 @@ namespace Cin7ApiWrapper.Common
     {
         Cin7ApiClient Client { get; }
 
-        public Cin7Api(IUser user)
+        public Cin7Api(IUser user, string userAgent)
         {
-            Client = new Cin7ApiClient(new Cin7ApiSettings(), user, new RateLimiter());
+            Client = new Cin7ApiClient(new Cin7ApiSettings(), user, new RateLimiter(), userAgent);
 
             Contacts = new ContactsEndpoint(Client);
             Branches = new BranchesEndpoint(Client);

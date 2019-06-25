@@ -19,7 +19,7 @@ namespace Cin7ApiWrapper.Common
         readonly ICin7ApiSettings _cin7ApiSettings;
         const string MediaTypeJson = "application/json";
 
-        public Cin7ApiClient(ICin7ApiSettings cin7ApiSettings, IUser userConnection, IRateLimiter rateLimiter)
+        public Cin7ApiClient(ICin7ApiSettings cin7ApiSettings, IUser userConnection, IRateLimiter rateLimiter, string userAgent)
         {
             _userConnection = userConnection ?? throw new ArgumentNullException(nameof(userConnection));
             _rateLimiter = rateLimiter ?? throw new ArgumentNullException(nameof(rateLimiter));
@@ -31,6 +31,17 @@ namespace Cin7ApiWrapper.Common
             });
 
             _client.BaseAddress = new Uri(_cin7ApiSettings.BaseUrl);
+
+            if (string.IsNullOrWhiteSpace(userAgent))
+            {
+                var product = ProductInfo.GetProductInfo();
+                _client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue(product.Name, product.Version)));
+            }
+            else
+            {
+                _client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue(userAgent)));
+            }
+
 
             var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(string.Format("{0}:{1}", _userConnection.Username, _userConnection.Password)));
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
