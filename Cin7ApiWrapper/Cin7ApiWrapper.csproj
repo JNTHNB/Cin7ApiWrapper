@@ -47,7 +47,7 @@
     <Compile Include="Common\Cin7ApiResponse.cs" />
     <Compile Include="Common\Extensions.cs" />
     <Compile Include="Common\FieldMapper.cs" />
-    <Compile Include="Common\ProductInfo.cs" />
+    <Compile Include="Common\ProductInfoHelper.cs" />
     <Compile Include="Endpoints\Base\Cin7Endpoint.cs" />
     <Compile Include="Endpoints\Base\Cin7ReadEndpoint.cs" />
     <Compile Include="Common\Response.cs" />
