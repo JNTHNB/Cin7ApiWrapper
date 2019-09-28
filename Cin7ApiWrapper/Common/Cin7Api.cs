@@ -5,30 +5,38 @@ namespace Cin7ApiWrapper.Common
 {
     public class Cin7Api
     {
-        Cin7ApiClient Client { get; }
+        public string UserAgent
+        {
+            set
+            {
+                client.UserAgent = value;
+            }
+        }
+
+        readonly Cin7ApiClient client;
 
         public Cin7Api(IUser user)
         {
-            Client = new Cin7ApiClient(new Cin7ApiSettings(), user, new RateLimiter());
+            client = new Cin7ApiClient(new Cin7ApiSettings(), user, new RateLimiter());
 
-            Contacts = new ContactsEndpoint(Client);
-            Branches = new BranchesEndpoint(Client);
-            ProductCategories = new ProductCategoriesEndpoint(Client);
-            Products = new ProductsEndpoint(Client);
-            ProductOptions = new ProductOptionsEndpoint(Client);
-            SerialNumbers = new SerialNumbersEndpoint(Client);
-            SalesOrders = new SalesOrdersEndpoint(Client);
-            Payments = new PaymentsEndpoint(Client);
-            Quotes = new QuotesEndpoint(Client);
-            PurchaseOrders = new PurchaseOrdersEndpoint(Client);
-            Stock = new StockEndpoint(Client);
-            BranchTransfers = new BranchTransfersEndpoint(Client);
-            Adjustments = new AdjustmentsEndpoint(Client);
-            Vouchers = new VouchersEndpoint(Client);
-            CreditNotes = new CreditNotesEndpoint(Client);
-            BomMasters = new BomMastersEndpoint(Client);
-            ProductionJobs = new ProductionJobsEndpoint(Client);
-            Users = new UsersEndpoint(Client);
+            Contacts = new ContactsEndpoint(client);
+            Branches = new BranchesEndpoint(client);
+            ProductCategories = new ProductCategoriesEndpoint(client);
+            Products = new ProductsEndpoint(client);
+            ProductOptions = new ProductOptionsEndpoint(client);
+            SerialNumbers = new SerialNumbersEndpoint(client);
+            SalesOrders = new SalesOrdersEndpoint(client);
+            Payments = new PaymentsEndpoint(client);
+            Quotes = new QuotesEndpoint(client);
+            PurchaseOrders = new PurchaseOrdersEndpoint(client);
+            Stock = new StockEndpoint(client);
+            BranchTransfers = new BranchTransfersEndpoint(client);
+            Adjustments = new AdjustmentsEndpoint(client);
+            Vouchers = new VouchersEndpoint(client);
+            CreditNotes = new CreditNotesEndpoint(client);
+            BomMasters = new BomMastersEndpoint(client);
+            ProductionJobs = new ProductionJobsEndpoint(client);
+            Users = new UsersEndpoint(client);
         }
 
         public ContactsEndpoint Contacts { get; }
